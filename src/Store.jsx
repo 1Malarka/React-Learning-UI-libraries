@@ -1,7 +1,8 @@
 import { create } from "zustand"
+import { persist } from "zustand/middleware";
 import { nanoid } from "nanoid"
 
-export const useTaskStore = create((set) => ({
+export const useTaskStore = create(persist((set) => ({
   tasks: [
     {
       id: nanoid(), // Unique Id for Parent
@@ -52,7 +53,7 @@ export const useTaskStore = create((set) => ({
     tasks: state.tasks.filter((t) => t.id !== parentId)
   })),
 
-  editChild: (parentId, childId, newText) => set((state) => ({
+  editChild: (parentId, childId, newText) => { if (!newText || newText.trim().length === 0) return; set((state) => ({
     tasks: state.tasks.map((t) => 
     t.id === parentId
     ? {...t, children: t.children.map((c) => c.id === childId ?
@@ -61,7 +62,9 @@ export const useTaskStore = create((set) => ({
     }
     : t
    ),
-  })),
-}))
+  }));
+},
+
+})))
 
   

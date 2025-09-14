@@ -1,6 +1,6 @@
 import { DropdownMenuCheckboxItem, DropdownMenuContent } from "@/components/ui/dropdown-menu"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter, DialogTrigger} from "@/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useState } from "react";
@@ -12,7 +12,6 @@ export function DropdownMenuContentItems({ parentId, childId }) {
   const [newText, setNewText] = useState("");
   const removeChild = useTaskStore((state) => state.removeChild)
   const editChild = useTaskStore((state) => state.editChild)
-  console.log(newText)
 
   return (
     <>
@@ -104,7 +103,6 @@ export function ChooseTextParent(){
 export function ChooseTextChild( { parentId } ){
   const [text, setNewText] = useState("");
   const addChild = useTaskStore((state) => state.addChild)
-  console.log(text)
    
   return (
         <DialogContent className="sm:max-w-[425px]">
@@ -133,3 +131,26 @@ export function ChooseTextChild( { parentId } ){
   )
 }
 
+export function ChooseRemoveParent( { parentId } ){
+  const removeParent = useTaskStore((state) => state.removeParent)
+   
+  return (
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Remove Section</DialogTitle>
+            <DialogDescription>
+             <strong> Warning!!!</strong> This action CAN&apos;T be undone.
+              This will permanently delete section from everywhere.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline" >Cancel</Button>
+            </DialogClose>
+            <DialogClose asChild>
+            <Button type="submit" onClick={() => removeParent(parentId)}>Save changes</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+  )
+}

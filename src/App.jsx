@@ -6,23 +6,19 @@ import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu
 import { DropdownMenuContentItems } from "./components/ui/Short"
 import { ChooseTextParent } from "./components/ui/Short"
 import { ChooseTextChild } from "./components/ui/Short"
+import { ChooseRemoveParent } from "./components/ui/Short"
 import { useTaskStore } from "./Store"
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog"
 
 function App() {
   const tasks = useTaskStore((state) => state.tasks)
-  const addParent = useTaskStore((state) => state.addParent)
-  const removeParent = useTaskStore((state) => state.removeParent)
-  const addChild = useTaskStore((state) => state.addChild)
-  const editChild = useTaskStore((state) => state.editChild)
-  
 
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
         <Card>
           <CardHeader>
-            <CardTitle>Reminder app v1.0.1</CardTitle>
+            <CardTitle>Reminder app v1.0.2</CardTitle>
             <CardDescription>Your tasks below</CardDescription>
           </CardHeader>
 
@@ -55,14 +51,15 @@ function App() {
  
                       <ChooseTextChild parentId={task.id}/>
                     </Dialog>
-                    <Button
-                      size="sm"
-                      variant=""
-                      className="mt-2 ml-2"
-                      onClick={() => removeParent(task.id)}
-                    >
-                      Remove Section
-                    </Button>
+                  <Dialog>
+                      <DialogTrigger asChild>
+                        <Button size="sm" variant="" >
+                          Remove Section
+                        </Button>
+                      </DialogTrigger>
+                  
+                    <ChooseRemoveParent parentId={task.id}/>
+                  </Dialog>
                   </AccordionContent>
                 </AccordionItem>
               ))}
