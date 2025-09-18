@@ -6,7 +6,7 @@ Same as React-Learning repo requirements.
 
 Download this rar.file https://drive.google.com/file/d/1CnmRJdxTj9XNOB7aFx6boGXMBPfirxeo/view?usp=sharing .
 
-Unzip it. After put unzipped folder into the Library-Testing folder. Like there would be public and src folders.
+Unzip it. After put unzipped folder into the React-Learning-UI-libraries folder. Like there would be public and src folders.
 
 
 I made this repository for only one reason, tailwind broke my css in React-Learning. So i HAVE to made this one
