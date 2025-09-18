@@ -1,5 +1,8 @@
 # React-Learning-UI-libraries
 
+# I bought custom domain and deployed it!!!
+check "https://reminderap.com/"!!!
+
 # Requirements
 
 Same as React-Learning repo requirements.
@@ -15,6 +18,8 @@ Well, updating this readme just a moment after commit with 1.0.1v of Reminder Ap
 
 # There's the results of it.
 
+First project deployed to Internet (And i even bought custom domain for it)
+
 My longest session of coding (14h, 25min)
 
 I actually enjoyed developing this (well same as every project on my github)
@@ -22,4 +27,5 @@ I actually enjoyed developing this (well same as every project on my github)
 It looks scary to build, like, so much time to do, so hard to debug and smt, buut if you start it would hit different 
 
 Like you just break down some Huge problems and solve them, think about what type of id or state function need, and it would be easier for you to make projects (basics but whatever)
+
 
