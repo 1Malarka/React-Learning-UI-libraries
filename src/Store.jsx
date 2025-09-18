@@ -19,7 +19,7 @@ export const useTaskStore = create(persist((set) => ({
       children: [ 
         { id: nanoid(), text: "Hello! You can change me" }
       ]
-    }
+    },
   ],
 
   // Add Parent
@@ -39,6 +39,7 @@ export const useTaskStore = create(persist((set) => ({
     )
   }));
 },
+
   // Delete Child
   removeChild: (parentId, childId) => set((state) => ({
     tasks: state.tasks.map((t) =>

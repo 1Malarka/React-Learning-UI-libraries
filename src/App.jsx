@@ -3,23 +3,48 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { DropdownMenuContentItems } from "./components/ui/Short"
-import { ChooseTextParent } from "./components/ui/Short"
-import { ChooseTextChild } from "./components/ui/Short"
-import { ChooseRemoveParent } from "./components/ui/Short"
+import { ChooseTextChild, ChooseRemoveParent, ChooseTextParent,DropdownMenuContentItems } from "./components/ui/Short"
 import { useTaskStore } from "./Store"
+import { create } from "zustand"
+import { persist } from "zustand/middleware"
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog"
 
 function App() {
   const tasks = useTaskStore((state) => state.tasks)
+  const useStore = create(persist((set) => ({
+  theme: "light",   // theme (fr ong???)
+    toggleTheme: () =>
+      set((state) => ({
+      theme: state.theme === "light" ? "dark" : "light"
+    })),
+})))
+
+function ThemeToggle() {
+const theme = useStore((state) => state.theme)
+const toggleTheme = useStore((state) => state.toggleTheme)
+
+  if (theme == "light") {
+    document.body.className = "lightTheme"
+  } else {
+    document.body.className = "blackTheme"
+  }
+
+  return (
+    <button className="ThemeButton" onClick={toggleTheme}>{theme}</button>
+  )
+}
 
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
         <Card>
-          <CardHeader>
-            <CardTitle>Reminder app v1.0.2</CardTitle>
-            <CardDescription>Your tasks below</CardDescription>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+            <CardTitle className="mb-1">Reminder app v1.0.2 </CardTitle>
+            <CardDescription>Your tasks below </CardDescription>
+            </div>
+            <ThemeToggle />
+            
           </CardHeader>
 
           <CardContent>
@@ -53,7 +78,7 @@ function App() {
                     </Dialog>
                   <Dialog>
                       <DialogTrigger asChild>
-                        <Button size="sm" variant="" >
+                        <Button size="sm" variant="" className="ml-1">
                           Remove Section
                         </Button>
                       </DialogTrigger>
